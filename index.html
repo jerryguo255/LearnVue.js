@@ -9,19 +9,202 @@
 </head>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
+<style type="text/css">
+    body {
+        background: #efefef;
+    }
+
+    #app1 {
+        margin: 0px 25%;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .row button {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.29);
+        text-shadow: 2px 2px 5px rgb(241, 149, 149);
+        background-color: rgb(139, 212, 188);
+        border: 0px;
+        margin: 25px;
+        padding: 15px;
+        width: 50%;
+        border-radius: 5px;
+    }
+
+    .font-25 {
+        font-size: 18px;
+    }
+
+    .card,
+    #cardInput,
+    #cardOutput,
+    .to {
+        margin: 25px;
+        padding: 15px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.29);
+        text-shadow: 2px 2px 5px rgb(241, 149, 149);
+        height: 85px;
+        background-color: rgb(139, 212, 188);
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+
+
+    #cardOutput {
+        background-color: rgb(221, 135, 175);
+    }
+
+
+    #cardInput input,
+    #cardOutput input {
+        line-height: 35px;
+        font-size: 15px;
+        text-indent: 20px;
+        border: 0;
+        border-radius: 5px;
+        outline: 0;
+        color: rgba(0, 0, 0, 0.7);
+        -webkit-user-select: auto !important;
+    }
+
+    #cardOutput h3 {
+        margin-top: 2px;
+
+        width: 192px;
+        text-align: center;
+    }
+
+    .to {
+        font-size: 22px;
+        padding-top: 35px;
+        box-shadow: none;
+        text-shadow: none;
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+
+    .card1 label {
+        margin-left: 20%;
+        font-size: 28px;
+    }
+</style>
+
 <body>
-    <h1>Jerry's page </h1>
-    <div id="app">
-        {{ message }}
+
+    <div id="app1">
+        <h1>Lecture 01</h1>
+
+        <div class="section">
+            <hr>
+            <div class="row">
+                <div class="card">
+                    <label>V-Model:Message 01 </label>
+                    <br>
+
+                    {{ message }}
+                    <br>
+                    <input type="text" v-model="message" placeholder="message">
+                </div>
+                <div class="card">
+                    <label>V-Bind:Message 02 </label>
+                    <br>
+
+                    {{ message1 }}
+                    <br>
+                    <input type="text" v-bind:value="message1" placeholder="message1">
+                </div>
+            </div>
+            <div class="row "><button class="font-25" @click="kiaora">Press Me</button></div>
+            <hr>
+        </div>
+
+        <div class="section">
+
+            <div class="row">
+                <div id="cardInput">
+                    <label id="inputLable">CM:</label>
+                    <br>
+                    <br>
+                    <input id="inputElement" type="text" v-Model="inputV" @input="inputM" placeholder="CM">
+                </div>
+                <div class="to">to</div>
+                <div id="cardOutput">
+                    <label id="outputLable">Inch: </label>
+                    <br>
+                    <br>
+                    <h3>{{output}}</h3>
+                </div>
+            </div>
+            <div class="row"><button class="font-25" @click="swap">Swap</button></div>
+            <hr>
+        </div>
     </div>
 </body>
 <script>
-    var app = new Vue({
-        el: '#app',
+
+    var vue = new Vue({
+        el: '#app1',
         data: {
-            message: 'Hello Doughnuts from Vue! v2'
+            isToInch: true,
+            message: 'Hello Vue !',
+            message1: 'Hello Vue !',
+            inputV: "",
+            output: 0,
+
+        },
+        methods: {
+            kiaora: function (event) {
+                this.message = "Kiaora"
+                this.message1 = "Kiaora1"
+            },
+            inputM: function (e) {//inputM 监听input事件
+
+                if (this.isToInch) {
+                    var num = e.target.value / 2.54;
+                    this.output = Math.round(num * 100) / 100;
+                } else {
+                    var num = e.target.value * 2.54;
+                    this.output = Math.round(num * 100) / 100;
+                }
+
+            },
+            swap: function () {
+                if (this.isToInch) {
+                    this.isToInch = false;
+                    this.inputV = "";
+                    this.output = 0;
+                    document.getElementById("cardInput").style.backgroundColor = "rgb(221, 135, 175)";
+                    document.getElementById("cardOutput").style.backgroundColor = "rgb(139, 212, 188)";
+                    document.getElementById("inputLable").innerHTML = "Inch:";
+                    document.getElementById("outputLable").innerHTML = "CM:";
+                    document.getElementById("inputElement").placeholder = "Inch";
+                } else {
+                    this.isToInch = true;
+                    this.inputV = ""
+                    this.output = 0
+                    document.getElementById("cardInput").style.backgroundColor = "rgb(139, 212, 188)";
+                    document.getElementById("cardOutput").style.backgroundColor = "rgb(221, 135, 175)";
+                    document.getElementById("inputLable").innerHTML = "CM:";
+                    document.getElementById("outputLable").innerHTML = "Inch:";
+                    document.getElementById("inputElement").placeholder = "CM";
+                }
+            }
+
         }
-    })
+
+    });
+
+
+
 </script>
+
 
 </html>
