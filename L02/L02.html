@@ -159,31 +159,70 @@
         },
         computed: {
             answer: function () {
+                // var result = this.inputV / 2.54
+                // // if (isNaN(result)) {
+                // //     return "Invaild Input";
+                // // } else {
+                // //     if (this.mode == 'inch') {
+                // //         setInputInch();
+                // //         return result;
+                // //     } else {
+                // //         setOutputInch();
+                // //         return result;
+                // //     }
+                // // }
+
+                // if (this.mode == 'inch') {
+                //     setInputInch();
+                //     if (isNaN(result)) {
+                //         return "Invaild Input";
+                //     } else {
+                //         return result;
+                //     }
+                // } else {
+                //     setOutputInch();
+                //     if (isNaN(result)) {
+                //         return "Invaild Input";
+                //     } else {
+                //         return result;
+                //     }
+                // }
                 if (this.mode == 'inch') {
-                    document.getElementById("cardInput").style.backgroundColor = "rgb(139, 212, 188)";
-                    document.getElementById("cardOutput").style.backgroundColor = "rgb(221, 135, 175)";
-                    document.getElementById("inputLable").innerHTML = "CM:";
-                    document.getElementById("outputLable").innerHTML = "Inch:";
-                    document.getElementById("inputElement").placeholder = "CM";
-                    return this.inputV / 2.54;
-
+                    setInputInch();
+                    var result = this.inputV / 2.54;
+                    // return this.inputV / 2.54;
+                    if (isNaN(result)) {
+                        return "Invaild Input";
+                    } else {
+                        return result;
+                    }
                 } else {
-                    document.getElementById("cardInput").style.backgroundColor = "rgb(221, 135, 175)";
-                    document.getElementById("cardOutput").style.backgroundColor = "rgb(139, 212, 188)";
-                    document.getElementById("inputLable").innerHTML = "Inch:";
-                    document.getElementById("outputLable").innerHTML = "CM:";
-                    document.getElementById("inputElement").placeholder = "Inch";
-
-                    return this.inputV * 2.54;
+                    setOutputInch();
+                    var result = this.inputV * 2.54
+                    if (isNaN(result)) {
+                        return "Invaild Input";
+                    } else {
+                        return result;
+                    }
                 }
-
-
-
             }
         }
 
     });
-
+    function setInputInch() {
+        document.getElementById("cardInput").style.backgroundColor = "rgb(139, 212, 188)";
+        document.getElementById("cardOutput").style.backgroundColor = "rgb(221, 135, 175)";
+        document.getElementById("inputLable").innerHTML = "CM:";
+        document.getElementById("outputLable").innerHTML = "Inch:";
+        document.getElementById("inputElement").placeholder = "CM";
+    }
+    function setOutputInch() {
+        document.getElementById("cardInput").style.backgroundColor = "rgb(221, 135, 175)";
+        document.getElementById("cardOutput").style.backgroundColor = "rgb(139, 212, 188)";
+        document.getElementById("inputLable").innerHTML = "Inch:";
+        document.getElementById("outputLable").innerHTML = "CM:";
+        document.getElementById("inputElement").placeholder = "Inch";
+    }
 
 
 </script>
