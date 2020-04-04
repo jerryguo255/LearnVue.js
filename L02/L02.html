@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lecutre 02 Computed</title>
+</head>
+<script src="js/main.js"></script>
+
+<style type="text/css">
+    body {
+        background: #efefef;
+    }
+
+    #app1 {
+        margin: 0px 25%;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .row button {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.29);
+        text-shadow: 2px 2px 5px rgb(241, 149, 149);
+        background-color: rgb(139, 212, 188);
+        border: 0px;
+        margin: 25px;
+        padding: 15px;
+        width: 50%;
+        border-radius: 5px;
+        transition: .3s;
+    }
+
+    .row button:hover {
+        margin: 22px;
+        padding: 18px;
+        background-color: rgb(221, 135, 175);
+    }
+
+    .font-25 {
+        font-size: 18px;
+    }
+
+    .card,
+    #cardInput,
+    #cardOutput,
+    .to {
+        margin: 25px;
+        padding: 15px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.29);
+        text-shadow: 2px 2px 5px rgb(241, 149, 149);
+        height: 85px;
+        background-color: rgb(139, 212, 188);
+        border-radius: 5px;
+        transition: 0.3s;
+
+    }
+
+
+
+    #cardOutput {
+        background-color: rgb(221, 135, 175);
+    }
+
+
+    #cardInput input,
+    #cardOutput input {
+        line-height: 35px;
+        font-size: 15px;
+        text-indent: 20px;
+        border: 0;
+        border-radius: 5px;
+        outline: 0;
+        color: rgba(0, 0, 0, 0.7);
+        -webkit-user-select: auto !important;
+    }
+
+    #cardOutput h3 {
+        margin-top: 2px;
+
+        width: 192px;
+        text-align: center;
+    }
+
+    .to {
+        font-size: 22px;
+        padding-top: 35px;
+        box-shadow: none;
+        text-shadow: none;
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+
+    .card1 label {
+        margin-left: 20%;
+        font-size: 28px;
+    }
+
+    .center {
+        margin-left: 45%;
+    }
+</style>
+
+<body>
+
+    <div id="app1">
+        <h1>Lecture 02 Computed</h1>
+
+        <div class="section">
+
+            <div class="row">
+                <div id="cardInput">
+                    <label id="inputLable">CM:</label>
+                    <br>
+                    <br>
+                    <input id="inputElement" type="text" v-Model="inputV" @input="inputM" placeholder="CM">
+                </div>
+                <div class="to">to</div>
+                <div id="cardOutput">
+                    <label id="outputLable">Inch: </label>
+                    <br>
+                    <br>
+                    <h3>{{output}}</h3>
+                </div>
+            </div>
+            <div class="center">
+                <label for="inch">To inches</label>
+                <input id="inch" type="radio" name="conversion" value="inch" v-model="mode">
+                <br><br>
+                <label for="CM">To CMs</label>
+                <input id="inch" type="radio" name="conversion" value="CM" v-model="mode">
+            </div>
+            <hr>
+        </div>
+        <a href="../index.html">Back to Main page</a>
+
+    </div>
+</body>
+<script>
+
+    var vue = new Vue({
+        el: '#app1',
+        data: {
+            isToInch: true,
+            message: 'Hello Vue !',
+            message1: 'Hello Vue !',
+            inputV: "",
+            output: 0,
+
+        },
+        methods: {
+
+        }
+
+    });
+
+
+
+</script>
+
+
+</html>

@@ -37,82 +37,125 @@
         padding: 15px;
         width: 50%;
         border-radius: 5px;
+        transition: .3s;
+    }
+
+    .row button:hover {
+        margin: 22px;
+        padding: 18px;
+        background-color: rgb(221, 135, 175);
     }
 
     .font-25 {
         font-size: 18px;
     }
 
-    .card {
+    .card,
+    #cardInput,
+    #cardOutput,
+    .to {
         margin: 25px;
         padding: 15px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
             0 6px 20px 0 rgba(0, 0, 0, 0.29);
         text-shadow: 2px 2px 5px rgb(241, 149, 149);
-        width: 170px;
+        height: 85px;
         background-color: rgb(139, 212, 188);
         border-radius: 5px;
-        transition: .3s;
+        transition: 0.3s;
+
     }
 
-    .card:hover {
-        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4),
-            0 6px 20px 0 rgba(0, 0, 0, 0.39);
-        text-shadow: 5px 5px 7px rgb(241, 149, 149);
+
+
+    #cardOutput {
         background-color: rgb(221, 135, 175);
-        margin: 20px;
-        /* 25变20 增加5 */
-        padding: 20px;
-        /* 15变20 减少5 所以相抵消 */
     }
 
-    a {
-        color: inherit;
-        /*a标签 字体颜色继承*/
-        text-decoration: none;
+
+    #cardInput input,
+    #cardOutput input {
+        line-height: 35px;
+        font-size: 15px;
+        text-indent: 20px;
+        border: 0;
+        border-radius: 5px;
+        outline: 0;
+        color: rgba(0, 0, 0, 0.7);
+        -webkit-user-select: auto !important;
     }
 
-    a:visited {
-        text-decoration: none;
+    #cardOutput h3 {
+        margin-top: 2px;
+
+        width: 192px;
+        text-align: center;
     }
 
-    a:hover {
-        text-decoration: none;
+    .to {
+        font-size: 22px;
+        padding-top: 35px;
+        box-shadow: none;
+        text-shadow: none;
+        background-color: rgba(0, 0, 0, 0.0);
     }
 
-    a:active {
-        text-decoration: none;
+    .card1 label {
+        margin-left: 20%;
+        font-size: 28px;
     }
 </style>
 
 <body>
 
     <div id="app1">
-        <h1>IT705_HCI Jerry's Vue Labs</h1>
+        <h1>Lecture 01 V-Model & Calculator</h1>
 
         <div class="section">
             <hr>
             <div class="row">
-                <a href="./L01.html">
-                    <div class="card">
-                        <label>Lecutre 01</label>
-                        <br><br>
-                        <label>V-Model & Calculator</label>
-                    </div>
-                </a>
-                <a href="./L02/L02.html">
-                    <div class="card">
-                        <label>Lecutre 02</label>
-                        <br><br>
-                        <label>Computed</label>
-                    </div>
-                </a>
-            </div>
+                <div class="card">
+                    <label>V-Model:Message 01 </label>
+                    <br>
 
+                    {{ message }}
+                    <br>
+                    <input type="text" v-model="message" placeholder="message">
+                </div>
+                <div class="card">
+                    <label>V-Bind:Message 02 </label>
+                    <br>
+
+                    {{ message1 }}
+                    <br>
+                    <input type="text" v-bind:value="message1" placeholder="message1">
+                </div>
+            </div>
+            <div class="row "><button class="font-25" @click="kiaora">Press Me</button></div>
             <hr>
         </div>
 
+        <div class="section">
 
+            <div class="row">
+                <div id="cardInput">
+                    <label id="inputLable">CM:</label>
+                    <br>
+                    <br>
+                    <input id="inputElement" type="text" v-Model="inputV" @input="inputM" placeholder="CM">
+                </div>
+                <div class="to">to</div>
+                <div id="cardOutput">
+                    <label id="outputLable">Inch: </label>
+                    <br>
+                    <br>
+                    <h3>{{output}}</h3>
+                </div>
+            </div>
+            <div class="row"><button class="font-25" @click="swap">Swap</button></div>
+            <hr>
+        </div>
+        <a href="./index.html">Back to Main page</a>
     </div>
 </body>
 <script>
