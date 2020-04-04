@@ -106,7 +106,7 @@
     }
 
     .center {
-        margin-left: 45%;
+        margin-left: 40%;
     }
 </style>
 
@@ -122,22 +122,23 @@
                     <label id="inputLable">CM:</label>
                     <br>
                     <br>
-                    <input id="inputElement" type="text" v-Model="inputV" @input="inputM" placeholder="CM">
+                    <input id="inputElement" type="text" v-Model="inputV" placeholder="CM">
                 </div>
                 <div class="to">to</div>
                 <div id="cardOutput">
                     <label id="outputLable">Inch: </label>
                     <br>
                     <br>
-                    <h3>{{output}}</h3>
+                    <input readonly id="inputElement" type="text" v-Model="answer">
                 </div>
             </div>
             <div class="center">
+                <input id="toInch" type="radio" name="conversion" value="inch" v-model="mode">
                 <label for="inch">To inches</label>
-                <input id="inch" type="radio" name="conversion" value="inch" v-model="mode">
                 <br><br>
+
+                <input id="toCM" type="radio" name="conversion" value="CM" v-model="mode">
                 <label for="CM">To CMs</label>
-                <input id="inch" type="radio" name="conversion" value="CM" v-model="mode">
             </div>
             <hr>
         </div>
@@ -150,15 +151,35 @@
     var vue = new Vue({
         el: '#app1',
         data: {
-            isToInch: true,
-            message: 'Hello Vue !',
-            message1: 'Hello Vue !',
+
+            mode: 'inch', //初始选项
             inputV: "",
-            output: 0,
+            outputV: 0,
 
         },
-        methods: {
+        computed: {
+            answer: function () {
+                if (this.mode == 'inch') {
+                    document.getElementById("cardInput").style.backgroundColor = "rgb(139, 212, 188)";
+                    document.getElementById("cardOutput").style.backgroundColor = "rgb(221, 135, 175)";
+                    document.getElementById("inputLable").innerHTML = "CM:";
+                    document.getElementById("outputLable").innerHTML = "Inch:";
+                    document.getElementById("inputElement").placeholder = "CM";
+                    return this.inputV / 2.54;
 
+                } else {
+                    document.getElementById("cardInput").style.backgroundColor = "rgb(221, 135, 175)";
+                    document.getElementById("cardOutput").style.backgroundColor = "rgb(139, 212, 188)";
+                    document.getElementById("inputLable").innerHTML = "Inch:";
+                    document.getElementById("outputLable").innerHTML = "CM:";
+                    document.getElementById("inputElement").placeholder = "Inch";
+
+                    return this.inputV * 2.54;
+                }
+
+
+
+            }
         }
 
     });
