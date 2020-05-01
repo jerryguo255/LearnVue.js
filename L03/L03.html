@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lecutre 03 Computed</title>
+</head>
+<script src="js/main.js"></script>
+
+<style type="text/css">
+    body {
+        background: #efefef;
+    }
+
+    #app1 {
+        margin: 0px 25%;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    /* .row {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    } */
+    .table td {
+        width: 80px;
+        height: 80px;
+    }
+
+    .row button {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.29);
+        text-shadow: 2px 2px 5px rgb(241, 149, 149);
+        background-color: rgb(139, 212, 188);
+        border: 0px;
+        margin: 25px;
+        padding: 15px;
+        /* width: 50%; */
+        border-radius: 5px;
+        transition: .3s;
+    }
+
+    .row button:hover {
+        margin: 22px;
+        padding: 18px;
+        background-color: rgb(221, 135, 175);
+    }
+
+    .font-25 {
+        font-size: 18px;
+    }
+</style>
+
+<body>
+
+    <div id="app1">
+        <h1>Lecture 03 Images</h1>
+
+        <div class="section">
+            <h3>Part A Change Image</h3>
+            <div class="row">
+                <button class="font-25" @click="changeImg">Change Image</button>
+            </div>
+
+
+            <img v-bind:src="url" alt="hey" v-bind:width="width" v-bind:height="height">
+            <!-- <img src="./lab3images/scene.jpg" alt="Smiley face" height="292" width="800"> -->
+            <hr>
+        </div>
+        <div class="section">
+            <h3>Part B Tic Tac Toe</h3>
+            <div class="table">
+                <table border="1">
+                    <tr>
+                        <td><img :src="grid(0)" @click="gclick(0)"></td>
+                        <td><img :src="grid(1)" @click="gclick(1)"></td>
+                        <td><img :src="grid(2)" @click="gclick(2)"></td>
+                    </tr>
+                    <tr>
+                        <td><img :src="grid(3)" @click="gclick(3)"></td>
+                        <td><img :src="grid(4)" @click="gclick(4)"></td>
+                        <td><img :src="grid(5)" @click="gclick(5)"></td>
+                    </tr>
+                    <tr>
+                        <td><img :src="grid(6)" @click="gclick(6)"></td>
+                        <td><img :src="grid(7)" @click="gclick(7)"></td>
+                        <!-- <td><img src="./lab3images/cross.jpg" height="80" width="80"></td> -->
+                        <td><img :src="grid(8)" @click="gclick(8)"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3>{{status}}</h3>
+            </div>
+            <div class="row">
+                <button class="font-25" @click="resetGame">Reset and Play Again!</button>
+            </div>
+
+            <hr>
+        </div>
+
+        <a href="../index.html">Back to Main page</a>
+
+    </div>
+</body>
+<script>
+
+    var vue = new Vue({
+        el: '#app1',
+        data: {
+            scene: true,
+            url: "./lab3images/scene.jpg",
+            height: 292,
+            width: 800,
+            tiles: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            status: " Click to begin Game..",
+            counter: 0,
+            gameFinished: false,
+            arraysOfWin: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+
+
+        },
+        methods: {
+            changeImg: function () {
+                this.scene = !this.scene;
+                if (this.scene) {
+
+                    console.log(this.scene);
+                    console.log("scene");
+                    this.url = "./lab3images/scene.jpg",
+                        this.height = 292,
+                        this.width = 800
+                } else {
+                    console.log(this.scene);
+                    console.log("meerkat");
+
+                    this.url = "./lab3images/meerkat.jpg",
+                        this.height = 254,
+                        this.width = 192
+
+                }
+            },
+            grid: function (index) {
+                if (this.tiles[index] == 0) {
+                    // console.log(index);
+                    return "./lab3images/blank.jpg";
+                } else if (this.tiles[index] == 1) {
+                    return "./lab3images/cross.jpg";
+                } else {
+                    return "./lab3images/nought.jpg";
+                }
+            },
+            gclick: function (index) {
+                //  if (this.thils[index] == 0) {
+                if (this.tiles[index] == 0) {//无重复点击
+                    if (!this.gameFinished) {//游戏未完成
+                        this.counter++;
+                        this.status = "Game Playing..."
+                        if (this.counter % 2 == 0) {
+                            this.tiles[index] = 1;
+                            this.$set(this.tiles, index, 1);
+                        } else {
+                            this.tiles[index] = 222;
+                            this.$set(this.tiles, index, 2);
+                        }
+
+                        for (let index = 0; index < this.arraysOfWin.length; index++) {
+                            this.arrayOfWin = this.arraysOfWin[index];
+
+                            tile1 = this.tiles[this.arrayOfWin[0]];
+                            tile2 = this.tiles[this.arrayOfWin[1]];
+                            tile3 = this.tiles[this.arrayOfWin[2]];
+
+
+                            PlayerXWin = tile1 == tile2 && tile2 == tile3 && tile3 == 1;
+                            PlayerOWin = tile1 == tile2 && tile2 == tile3 && tile3 == 2;
+
+                            if (PlayerXWin) {
+                                this.status = "Player X Win !"
+                                this.gameFinished = true;
+
+                            } else if (PlayerOWin) {
+                                this.status = "Player O Win !"
+                                this.gameFinished = true;
+                            } else if (this.counter == 9) {
+                                this.status = "Draw !"
+                                this.gameFinished = true;
+                            }
+                        }
+                    };
+                }
+            },
+            resetGame: function () {
+                this.tiles = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+                this.status = " Click to begin Game..";
+                this.counter = 0;
+                this.gameFinished = false;
+
+            }
+        }
+
+
+    })
+
+
+
+
+
+</script>
+
+
+</html>
