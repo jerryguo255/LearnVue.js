@@ -156,8 +156,8 @@
             },
             gclick: function (index) {
                 //  if (this.thils[index] == 0) {
-                if (this.tiles[index] == 0) {//无重复点击
-                    if (!this.gameFinished) {//游戏未完成
+                if (this.tiles[index] == 0) {//No repeated clicks
+                    if (!this.gameFinished) {//Game no finished 
                         this.counter++;
                         this.status = "Game Playing..."
                         if (this.counter % 2 == 0) {
@@ -186,7 +186,7 @@
                             } else if (PlayerOWin) {
                                 this.status = "Player O Win !"
                                 this.gameFinished = true;
-                            } else if (this.counter == 9) {
+                            } else if (this.counter == 9 && this.gameFinished == false) {//draw
                                 this.status = "Draw !"
                                 this.gameFinished = true;
                             }
