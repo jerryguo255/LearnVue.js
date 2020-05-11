@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lecutre 04 </title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js">
+</script>
+
+
+
+
+
+
+<style type="text/css">
+    body {
+        background: #efefef;
+    }
+
+    #app1 {
+        margin: 0px 25%;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    /* .row {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    } */
+    .table td {
+        width: 80px;
+        height: 80px;
+    }
+
+    .row button {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.29);
+        text-shadow: 2px 2px 5px rgb(241, 149, 149);
+        background-color: rgb(139, 212, 188);
+        border: 0px;
+        margin: 25px;
+        padding: 15px;
+        /* width: 50%; */
+        border-radius: 5px;
+        transition: .3s;
+    }
+
+    .row button:hover {
+        margin: 22px;
+        padding: 18px;
+        background-color: rgb(221, 135, 175);
+    }
+
+    .font-25 {
+        font-size: 18px;
+    }
+</style>
+
+<body>
+
+    <div id="app1">
+        <h1>Lecture 04 Lifecycle</h1>
+        <div class="section">
+            <div class="row">
+
+                <select v-model="sid">
+                    <option value="0" disabled hidden>Select A Person</option>
+                    <option v-bind:value="item.id" v-for="item in people">{{ item.name }}</option>
+                </select>
+            </div>
+
+            <hr>
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <table border=".5">
+                    <thead>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                    </thead>
+                    <tr>
+                        <td>{{sid}}</td>
+                        <td>{{personName(sid)}}</td>
+                        <td>{{personEmail(sid)}}</td>
+                        <td>{{personAddress(sid)}}</td>
+                    </tr>
+
+                </table>
+
+
+                <!-- <hr>{{ sid > 0?people[sid-1].name:"" }} -->
+
+            </div>
+        </div>
+        <br>
+
+        <a href="../index.html">Back to Main page</a>
+
+    </div>
+</body>
+<script src="js/main.js"></script>
+
+</html>
