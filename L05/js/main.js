@@ -18,8 +18,9 @@ var vue = new Vue({
     },
     methods: {
         altimage: function (e) {
-            alert("err");
-            e.target.src = "./flags/blank.gif"
+            alert("Cannot find Image");
+            e.target.src = "./flags/blank.gif";
+
         },
 
         getUrl: function (id) {
