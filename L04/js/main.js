@@ -3,8 +3,7 @@ var vue = new Vue({
     data: {
         people: null,
         sid: 0,
-        idd: null
-
+        //idd: null
     },
     mounted: function () {
         axios.get(
@@ -19,6 +18,8 @@ var vue = new Vue({
     },
     methods: {
         personName: function (id) {
+
+
             return id > 0 ? this.people[id - 1].name : "";
         },
         personEmail: function (id) {
@@ -33,8 +34,5 @@ var vue = new Vue({
         personAddress: function (id) {
             return id > 0 ? this.people[id - 1].address.city : "";
         }
-
     }
-
-
 })

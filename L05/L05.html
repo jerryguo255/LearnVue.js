@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lecutre 04 </title>
+    <title>Lecutre 05 </title>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
 </script>
@@ -60,35 +60,47 @@
 
 <body>
     <div id="app1">
-        <h1>Lecture 04 Lifecycle</h1>
+        <h1>Lecture 05 Country Lab</h1>
         <div class="section">
             <div class="row">
-                <select v-model="sid">
-                    <option value="0" disabled hidden>Select A Person</option>
-                    <option v-bind:value="item.id" v-for="item in people">{{ item.name }}</option>
+                <select v-model="cid">
+                    <option value="0" disabled hidden>Select A Country</option>
+                    <option v-bind:value="index+1" v-for="(item,index) in countries">{{ item.Name }}</option>
                 </select>
             </div>
             <hr>
         </div>
+
         <div class="section">
             <div class="row">
                 <table border=".5">
                     <thead>
                         <th>No.</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
+                        <th>HeadOfState</th>
+                        <th>IndepYear</th>
+                        <th>LocalName</th>
+                        <th>Region</th>
+
                     </thead>
                     <tr>
-                        <td>{{sid}}</td>
-                        <td>{{personName(sid)}}</td>
-                        <td>{{personEmail(sid)}}</td>
-                        <td>{{personAddress(sid)}}</td>
+                        <td style="padding: 7px;">{{cid}}</td>
+                        <td style="padding: 7px;">{{cName(cid)}}</td>
+                        <td style="padding: 7px;">{{cHeadOfState(cid)}}</td>
+                        <td>{{cIndepYear(cid)}}</td>
+                        <td>{{cLocalName(cid)}}</td>
+                        <td>{{cRegion(cid)}}</td>
+
                     </tr>
+
+
                 </table>
-                <!-- <hr>{{ sid > 0?people[sid-1].name:"" }} -->
+                <img :src="getUrl(cid)" @error="altimage">
+
             </div>
+
         </div>
+        <!-- fd  -->
         <br>
         <a href="../index.html">Back to Main page</a>
     </div>

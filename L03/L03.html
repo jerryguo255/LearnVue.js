@@ -56,10 +56,8 @@
 </style>
 
 <body>
-
     <div id="app1">
         <h1>Lecture 03 Images</h1>
-
         <div class="section">
             <h3>Part A Change Image</h3>
             <div class="row">
@@ -99,16 +97,13 @@
             <div class="row">
                 <button class="font-25" @click="resetGame">Reset and Play Again!</button>
             </div>
-
             <hr>
         </div>
-
         <a href="../index.html">Back to Main page</a>
 
     </div>
 </body>
 <script>
-
     var vue = new Vue({
         el: '#app1',
         data: {
@@ -121,8 +116,6 @@
             counter: 0,
             gameFinished: false,
             arraysOfWin: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-
-
         },
         methods: {
             changeImg: function () {
@@ -199,18 +192,9 @@
                 this.status = " Click to begin Game..";
                 this.counter = 0;
                 this.gameFinished = false;
-
             }
         }
-
-
     })
-
-
-
-
-
 </script>
-
 
 </html>
